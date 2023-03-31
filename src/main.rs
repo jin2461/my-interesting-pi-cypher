@@ -1,7 +1,6 @@
 use std::fs::File;
 use std::io;
 use std::io::prelude::*;
-use std::time::Instant;
 
 fn string_to_digits(s: &str) -> Vec<u8> {
     s.chars()
@@ -109,7 +108,6 @@ fn main() {
     let num_key: usize = string_key.parse().expect("this is not an intiger");
     let pi2: Vec<u8> = string_to_digits(&pi);
 
-    let start = Instant::now();
     choice.pop();
     choice.pop();
     if choice == "1" {
@@ -117,6 +115,4 @@ fn main() {
     } else {
         decrypt(pi2, original_messege, num_key);
     }
-    let duration = start.elapsed();
-    println!("Elapsed time: {:?}", duration);
 }

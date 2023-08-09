@@ -53,6 +53,7 @@ fn main() {
         .expect("failed to readline");
     string_key.pop();
     string_key.pop();
+    let mut file = File::create("output.txt").expect("file not created");
     let num_key: usize = string_key.parse().expect("this is not an intiger");
     let pi2: Vec<u8> = string_to_digits(&pi);
     let mut count: usize = 0;
@@ -63,7 +64,6 @@ fn main() {
 
     choice.pop();
     choice.pop();
-    let mut output: String = String::new();
     if choice == "1" {
         while i < (input.len()) {
             let pi_offset: u8 = (pi2[i + count + num_key] * 10) + pi2[i + count + 1 + num_key];
@@ -98,5 +98,7 @@ fn main() {
     if choice != "1" {
         decripted_messege = decripted_messege.replace("$", " ");
     }
+    file.write_all(decripted_messege.as_bytes())
+        .expect("file not written to");
     println!("{decripted_messege}")
 }
